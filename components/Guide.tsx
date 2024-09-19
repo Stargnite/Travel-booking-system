@@ -11,12 +11,16 @@ const Guide = () => {
         </p>
         <div className="flex flex-wrap justify-between gap-5 lg:gap-10">
           <h2 className="bold-40 lg:bold-64 xl:max-w-[390px]">Guide You to Easy Path</h2>
-          <p className="regular-16 text-gray-30 xl:max-w-[520px]">Only with the hilink application you will no longer get lost and get lost again, because we already support offline maps when there is no internet connection in the field. Invite your friends, relatives and friends to have fun in the wilderness through the valley and reach the top of the mountain</p>
+          <p className="regular-16 text-gray-30 xl:max-w-[520px]">
+            Embark on an exciting journey where adventure and safety go hand in hand!
+            Whether yo&apos;re exploring bustling cities or relaxing in serene landscapes,
+            we ensure your trip is not only thrilling but also secure at every step.
+          </p>
         </div>
       </div>
 
       <div className="flexCenter max-container relative w-full">
-        <Image 
+        <Image
           src="/boat.png"
           alt="boat"
           width={1440}
@@ -25,7 +29,7 @@ const Guide = () => {
         />
 
         <div className="absolute flex bg-white py-8 pl-5 pr-7 gap-3 rounded-3xl border shadow-md md:left-[5%] lg:top-20">
-          <Image 
+          <Image
             src="/meter.svg"
             alt="meter"
             width={16}

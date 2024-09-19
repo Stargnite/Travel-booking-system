@@ -3,7 +3,15 @@ import Link from "next/link"
 import { NAV_LINKS } from "@/constants"
 import Button from "./Button"
 
+import {
+	SignInButton,
+	UserButton
+} from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+
 const Navbar = () => {
+	const { userId }: { userId: string | null } = auth()
+
 	return (
 		<nav className="flexBetween max-container padding-container relative z-30 py-5 ">
 			<Link href={"/"}>
@@ -18,11 +26,20 @@ const Navbar = () => {
 				))}
 			</ul>
 			<div className="lg:flexCenter hidden">
-				<Button
-					type="button"
-					title="Login"
-					icon="/user.svg"
-					variant="btn_dark_green" />
+
+				{!userId ? (
+					<SignInButton>
+						<button
+							className={`flexCenter gap-3 rounded-full border btn_dark_green`}
+							type="button">
+							<Image src="/user.svg" alt="avatar" height={24} width={24} />
+							<label className='bol-16 whitespace-nowrap'>
+								Sign in
+							</label>
+						</button>
+					</SignInButton>
+				) : (<UserButton />)}
+
 			</div>
 
 			<Image

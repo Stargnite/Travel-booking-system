@@ -17,7 +17,7 @@ const Hero = () => {
 					className='absolute left-[5px] top-[-30px] w-10 
 					lg:w-[50px]'
 				/>
-				<h1 className='bold-52 lg:bold-88'>Putuk Truno Camp Area</h1>
+				<h1 className='bold-52 lg:text-[78px] lg:font-[700] lg:leading-[120%]'>Book Your Dream Getaway Today</h1>
 				<p className='regular-16 mt-6 text-gray-30 xl:max-w-[520px]'>
 					We want to be on each of your journeys seeking the satisfaction
 					of seeing the incorruptible beauty of nature. We can help you
@@ -43,7 +43,7 @@ const Hero = () => {
 				<div className="flex w-full flex-col gap-3 sm:flex-row">
 					<Button
 						type="button"
-						title="Download App"
+						title="Book A Flight"
 						variant='btn_green'
 					/>
 
