@@ -79,7 +79,7 @@ const Camp = () => {
             Get ready for an exciting journey like no other! From 
             the moment you start planning until your feet touch the 
             ground in a new destination, every step will be filled 
-            with unforgettable experiences. Whether you&apos;-------------------------------------re exploring 
+            with unforgettable experiences. Whether you&apos;re exploring 
             vibrant cities, relaxing on pristine beaches, or uncovering hidden gems, 
             we&apos;re here to ensure your adventure is seamless and stress-free.
             With us, every trip is more than just a vacation—it&apos;s a story 
