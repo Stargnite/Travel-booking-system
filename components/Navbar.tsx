@@ -14,6 +14,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 // } from '@clerk/nextjs'
 // import { auth } from '@clerk/nextjs/server'
 import { useState } from "react"
+import SignInBtn from "./SignInBtn"
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -44,6 +45,8 @@ const Navbar = () => {
                 Sign in
               </label>
             </button>
+
+            {/* <SignInBtn /> */}
 
             <div onClick={() => setNav(!nav)} className="flex lg:hidden cursor-pointer">
               <RxHamburgerMenu size={30} />
@@ -78,41 +81,10 @@ const Navbar = () => {
               <button className="bg-[#434343] flex w-full justify-center text-xl font-[400] text-white px-5 py-3 rounded-lg mx-2">
                 <Link href="/">Get started</Link>
               </button>
+
+
+              
             </div>
-
-            {/* <div
-              className="mt-20 flex flex-col w-full items-center space-y-7 px-5"
-            // onClick={() => setNav(false)}
-            >
-              <Link
-                href="/"
-                className="active:underline font-semibold text-[18px] leading-6 text-[#333333] hover:underline"
-              >
-                Home
-              </Link>
-              <Link
-                href="/"
-                className="active:underline font-semibold text-[18px] leading-6 text-[#333333] hover:underline"
-              >
-                <p>Service</p>
-              </Link>
-              <Link
-                href="/"
-                className="active:underline font-semibold text-[18px] leading-6 text-[#333333] hover:underline"
-              >
-                <p className="">Bookings</p>
-              </Link>
-              <Link
-                href="/"
-                className="active:underline font-semibold text-[18px] leading-6 text-[#333333] hover:underline"
-              >
-                <p>Contact Us</p>
-              </Link>
-
-              <button className="bg-[#434343] flex w-full justify-center text-xl font-[400] text-white px-5 py-3 rounded-lg mx-2">
-                <Link href="/">Get started</Link>
-              </button>
-            </div> */}
           </div>
         </div>
       </nav>
