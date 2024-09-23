@@ -6,20 +6,19 @@ import Link from 'next/link'
 const Hero = () => {
 	return (
 		<section className='max-container 
-		padding-center flex flex-col gap-20 
-		py-10 pb-32 md:gap-28 lg:py-20 xl:flex-row'>
-			<div className="hero-map min-h-87vh" />
+		 md:flexCenter padding-container gap-10 py-10  lg:gap-[18%] lg:py-20 xl:flex-row'>
+			<div className="hero-map" />
 			<div className="absolute h-[87vh] w-screen inset-0 bg-black opacity-70"></div>
-			<div className="relative z-20 flex flex-1 flex-col xl:w-1/2 px-5">
+			<div className="relative z-20 flex flex-1 flex-col xl:w-1/2 mb-24">
 				<Image
 					src="/camp.svg"
 					alt='camp'
 					width={50}
 					height={50}
-					className='absolute left-[5px] top-[-30px] w-10 
+					className='absolute left-[30px] top-[-30px] w-10 
 					lg:w-[50px]'
 				/>
-				<h1 className='bold-52 text-[15px] lg:text-[65px] lg:font-[700] lg:leading-[120%] text-white'>Book Your <span className='text-green-50'> Dream Getaway</span> Today</h1>
+				<h1 className='lg:bold-52 text-[35px] font-[900] text-center md:text-start p-0 m-0 leading-[100%] lg:leading-[120%] text-white'>Book Your <span className='text-green-50'> Dream Getaway</span> Today</h1>
 				<p className='regular-16 my-8 text-gray-10 xl:max-w-[520px]'>
 					We want to be on each of your journeys seeking the satisfaction
 					of seeing the incorruptible beauty of nature. We can help you
@@ -48,7 +47,7 @@ const Hero = () => {
 						<Button
 							type="button"
 							title="Book A Flight"
-							variant='btn_green'
+							variant='lg:btn_green border-green-50 bg-green-50 px-8 py-5 text-white w-full'
 						/>
 					</Link>
 
@@ -59,8 +58,6 @@ const Hero = () => {
 						variant='lg:btn_white_text border-gray-50 bg-gray-50 px-8 py-5 text-white'
 					/>
 				</div>
-
-				{/* </div> */}
 			</div>
 
 			<div className="relative flex flex-1 items-start mx-5 lg:mx-auto">

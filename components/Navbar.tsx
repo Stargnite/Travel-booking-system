@@ -6,23 +6,23 @@ import { NAV_LINKS } from "@/constants"
 import Button from "./Button"
 import { IoClose } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
-
-
-// import {
-// 	SignInButton,
-// 	UserButton
-// } from '@clerk/nextjs'
-// import { auth } from '@clerk/nextjs/server'
+import {
+  SignInButton,
+  UserButton
+} from '@clerk/nextjs'
 import { useState } from "react"
-import SignInBtn from "./SignInBtn"
 
-const Navbar = () => {
+
+interface NavbarProps {
+  userId: string | null
+}
+
+const Navbar: React.FC<NavbarProps> = ({userId}) => {
   const [nav, setNav] = useState(false);
-  // const { userId }: { userId: string | null } = auth()
 
   return (
     <>
-      <nav className="flexBetween max-container padding-container relative z-30 py-5 ">
+      <nav className="flexBetween max-container padding-container relative z-30 py-5 border-b-[1px]">
         <div className="flex items-center px-5 w-full justify-between">
           <Link href={"/"}>
             <Image src="/hilink-logo.svg" alt="logo" width={74} height={29} />
@@ -37,16 +37,18 @@ const Navbar = () => {
           </div>
 
           <div className="flexCenter gap-3">
-            <button
-              className={`flexCenter gap-3 rounded-full bg-green-90 transition-all text-white hover:bg-black px-4 py-2 lg:btn_dark_green`}
-              type="button">
-              <Image src="/user.svg" alt="avatar" height={24} width={24} />
-              <label className='bol-16 whitespace-nowrap'>
-                Sign in
-              </label>
-            </button>
-
-            {/* <SignInBtn /> */}
+            {!userId ? (
+              <SignInButton>
+                <button
+                  className={`flexCenter gap-3 rounded-full border btn_dark_green`}
+                  type="button">
+                  <Image src="/user.svg" alt="avatar" height={24} width={24} />
+                  <label className='bol-16 whitespace-nowrap'>
+                    Sign in
+                  </label>
+                </button>
+              </SignInButton>
+            ) : (<UserButton />)}
 
             <div onClick={() => setNav(!nav)} className="flex lg:hidden cursor-pointer">
               <RxHamburgerMenu size={30} />
@@ -73,7 +75,7 @@ const Navbar = () => {
             </div>
             <div className="mt-20 flex flex-col w-full items-center space-y-7 px-5">
               {NAV_LINKS.map((link) => (
-                <Link href={link.href} key={link.key} className="regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold">
+                <Link href={link.href} key={link.key} onClick={() => setNav(false)} className="regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold">
                   {link.label}
                 </Link>
               ))}
@@ -82,8 +84,6 @@ const Navbar = () => {
                 <Link href="/">Get started</Link>
               </button>
 
-
-              
             </div>
           </div>
         </div>
