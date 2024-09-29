@@ -19,10 +19,9 @@ const Hero = () => {
 					lg:w-[50px]'
 				/>
 				<h1 className='lg:bold-52 text-[35px] font-[900] text-center md:text-start p-0 m-0 leading-[100%] lg:leading-[120%] text-white'>Book Your <span className='text-green-50'> Dream Getaway</span> Today</h1>
-				<p className='regular-16 my-8 text-gray-10 xl:max-w-[520px]'>
-					We want to be on each of your journeys seeking the satisfaction
-					of seeing the incorruptible beauty of nature. We can help you
-					on an adventure around the world in just one app
+				<p className='regular-16 my-8 text-gray-10 xl:max-w-[520px] text-center md:text-start'>
+					Discover amazing destinations and book your next adventure with ease.
+					We can help you on an adventure around the world with just the click of a few buttons.
 				</p>
 				{/* <div className="flex md:flex-row lg:flex-col items-center"> */}
 				<div className="mb-8 flex-wrap lg:flex-nowrap gap-5 hidden md:flex ">
@@ -43,7 +42,7 @@ const Hero = () => {
 					</p>
 				</div>
 				<div className="flex w-full flex-col gap-3 sm:flex-row">
-					<Link href="/BookingForm">
+					<Link href="/booking-form">
 						<Button
 							type="button"
 							title="Book A Flight"

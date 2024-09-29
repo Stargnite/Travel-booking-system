@@ -17,15 +17,15 @@ interface NavbarProps {
   userId: string | null
 }
 
-const Navbar: React.FC<NavbarProps> = ({userId}) => {
+const Navbar: React.FC<NavbarProps> = ({ userId }) => {
   const [nav, setNav] = useState(false);
 
   return (
     <>
       <nav className="flexBetween max-container padding-container relative z-30 py-5 border-b-[1px]">
         <div className="flex items-center px-5 w-full justify-between">
-          <Link href={"/"}>
-            <Image src="/hilink-logo.svg" alt="logo" width={74} height={29} />
+          <Link href={"/"} className="text-2xl font-bold text-green-50">
+            TravelEase
           </Link>
 
           <div className="hidden h-full gap-12 lg:flex items-center">
@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({userId}) => {
             {!userId ? (
               <SignInButton>
                 <button
-                  className={`flexCenter gap-3 rounded-full border btn_dark_green`}
+                  className={`hidden lg:flexCenter gap-3 rounded-full border btn_dark_green !bg-green-90 hover:opacity-90`}
                   type="button">
                   <Image src="/user.svg" alt="avatar" height={24} width={24} />
                   <label className='bol-16 whitespace-nowrap'>
@@ -48,7 +48,11 @@ const Navbar: React.FC<NavbarProps> = ({userId}) => {
                   </label>
                 </button>
               </SignInButton>
-            ) : (<UserButton />)}
+            ) : (
+              <div className="hidden lg:flex">
+                <UserButton />
+              </div>
+            )}
 
             <div onClick={() => setNav(!nav)} className="flex lg:hidden cursor-pointer">
               <RxHamburgerMenu size={30} />
@@ -80,9 +84,15 @@ const Navbar: React.FC<NavbarProps> = ({userId}) => {
                 </Link>
               ))}
 
-              <button className="bg-[#434343] flex w-full justify-center text-xl font-[400] text-white px-5 py-3 rounded-lg mx-2">
-                <Link href="/">Get started</Link>
-              </button>
+              {!userId ? (
+                <SignInButton>
+                  <button className="bg-[#434343] flex w-full justify-center text-xl font-[400] text-white px-5 py-3 rounded-lg mx-2">
+                    <Link href="/">Get started</Link>
+                  </button>
+                </SignInButton>
+              ) : (<div className="flex items-center gap-3">
+                <UserButton /> <p className="text-gray-50">Settings</p>
+              </div>)}
 
             </div>
           </div>

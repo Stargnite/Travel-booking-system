@@ -1,59 +1,6 @@
-// import React from 'react'
-
-// const page = () => {
-// 	return (
-// 		<section className='flexCenter'>
-// 			<h1></h1>
-// 			<div className="my-10 mx-2 md:m-20 bg-gray-10 p-10 shadow-md rounded w-full max-w-[1000px] lg:mx-auto">
-// 				<form className='flex flex-col gap-5 '>
-// 					<section className='flex flex-col md:grid grid-cols-2 gap-5 flexBetween'>
-// 						<div className="flex flex-col gap-2 w-full">
-// 							<label className='text-gray-50'>First name</label>
-// 							<input className="flex h-10 rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
-// 								type="text"
-// 								name="name"
-// 							/>
-// 						</div>
-// 						<div className="flex flex-col gap-2 w-full">
-// 							<label className='text-gray-50'>Last name</label>
-// 							<input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
-// 								type="text"
-// 								name="name"
-// 							/>
-// 						</div>
-// 					</section>
-
-// 					<section className='flex flex-col md:grid grid-cols-2 gap-5 flexBetween'>
-// 						<div className="flex flex-col gap-2 w-full">
-// 							<label className='text-gray-50'>Email</label>
-// 							<input className="flex h-10 rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
-// 								type="text"
-// 								name="name"
-// 							/>
-// 						</div>
-// 						<div className="flex flex-col gap-2 w-full">
-// 							<label className='text-gray-50'>Destination</label>
-// 							<input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
-// 								type="text"
-// 								name="name"
-// 							/>
-// 						</div>
-// 					</section>
-
-// 					<button className='w-full bg-slate-700 py-2 text-white rounded-md hover:bg-slate-600'>Submit</button>
-// 				</form>
-// 			</div>
-// 		</section>
-// 	)
-// }
-
-// export default page
-
-
-
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -63,10 +10,48 @@ import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
+import { Loader2 } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+
+
 
 export default function Page() {
+  const router = useRouter()
+
+
   const [startDate, setStartDate] = useState<Date>()
   const [endDate, setEndDate] = useState<Date>()
+  const [isLoading, setIsLoading] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [redirectCountdown, setRedirectCountdown] = useState(8)
+
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+    if (isDialogOpen && redirectCountdown > 0) {
+      timer = setTimeout(() => {
+        setRedirectCountdown(prev => prev - 1)
+      }, 1000)
+    } else if (isDialogOpen && redirectCountdown === 0) {
+      router.push('/destination')
+    }
+    return () => clearTimeout(timer)
+  }, [isDialogOpen, redirectCountdown, router])
+
+
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    setTimeout(() => {
+      setIsLoading(false)
+      setIsDialogOpen(true)
+      console.log('Form submitted')
+    }, 3000)
+  }
 
   return (
     <div className="">
@@ -76,15 +61,15 @@ export default function Page() {
           <CardDescription>Fill in your travel details to book your next adventure.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-4">
               <div className="space-y-2 w-full">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="John Doe" required />
+                <Input id="name" placeholder="John Doe" />
               </div>
               <div className="space-y-2 w-full">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@example.com" required />
+                <Input id="email" type="email" placeholder="john@example.com" />
               </div>
             </div>
 
@@ -121,13 +106,13 @@ export default function Page() {
 
             <div className="space-y-2">
               <Label htmlFor="destination">Destination</Label>
-              <Input id="destination" placeholder="Paris, France" required />
+              <Input id="destination" placeholder="Paris, France" />
             </div>
 
             <div className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="travelers">Number of Travelers</Label>
-                <Input id="travelers" type="number" min="1" placeholder="2" required />
+                <Input id="travelers" type="number" min="1" placeholder="2" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="purpose">Travel Purpose</Label>
@@ -144,10 +129,31 @@ export default function Page() {
               </div>
             </div>
 
-            <Button type="submit" className="w-full mt-10">Book Travel</Button>
+            <Button type="submit" className="w-full mt-10 flex" disabled={isLoading}>
+              {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+              {isLoading ? "Processing..." : "Proceed"}
+            </Button>
           </form>
         </CardContent>
       </Card>
+
+
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader className='flex flex-col gap-4 py-5'>
+            <div className="flex justify-center">
+              <Image src="/success-anime.gif" alt="success" className="w-[50%]" width={100} height={10} />
+            </div>
+            <DialogTitle className='text-xl md:text-3xl text-center text-gray-800'>Details Confirmed!</DialogTitle>
+            <DialogDescription className="text-center">
+              Your travel booking has been successfully submitted. We&apos;ll send you a confirmation email shortly with all the details.
+              <br />
+              <span className="text-red-500 text-sm">Redirecting to destination page in {redirectCountdown} seconds...</span>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
