@@ -1,6 +1,6 @@
 import { PEOPLE_URL } from "@/constants";
 import Image from "next/image";
-import Animation from "./animation";
+import Animation from "./Animation";
 
 interface CampProps {
   backgroundImage: string;
