@@ -1,21 +1,23 @@
 import { FEATURES } from '@/constants'
 import Image from 'next/image'
 import React from 'react'
+import Animation from './animation'
 
 const Features = () => {
   return (
     <section className="flex-col flexCenter overflow-hidden bg-feature-bg bg-center bg-no-repeat py-24">
       <div className="max-container padding-container relative w-full flex justify-end">
         <div className="flex flex-1 lg:min-h-[900px]">
-          <Image
-            src="/phone.png"
-            alt="phone"
-            width={440}
-            height={1000}
-            className="feature-phone"
-          />
+          <Animation duration={1} delay={0.2} direction={"x"} reverse={true}>
+            <Image
+              src="/phone.png"
+              alt="phone"
+              width={440}
+              height={1000}
+              className="feature-phone"
+            />
+          </Animation>
         </div>
-
         <div className="z-20 flex w-full flex-col lg:w-[60%]">
           <div className='relative'>
             <Image
@@ -29,9 +31,9 @@ const Features = () => {
           </div>
           <ul className="mt-10 grid gap-10 md:grid-cols-2 lg:mg-20 lg:gap-20">
             {FEATURES.map((feature) => (
-              <FeatureItem 
+              <FeatureItem
                 key={feature.title}
-                title={feature.title} 
+                title={feature.title}
                 icon={feature.icon}
                 description={feature.description}
               />

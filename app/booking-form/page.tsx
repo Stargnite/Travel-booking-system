@@ -23,23 +23,6 @@ export default function Page() {
   const [startDate, setStartDate] = useState<Date>()
   const [endDate, setEndDate] = useState<Date>()
   const [isLoading, setIsLoading] = useState(false)
-  // const [isDialogOpen, setIsDialogOpen] = useState(false)
-  // const [redirectCountdown, setRedirectCountdown] = useState(8)
-
-
-  // useEffect(() => {
-  //   let timer: NodeJS.Timeout
-  //   if (isDialogOpen && redirectCountdown > 0) {
-  //     timer = setTimeout(() => {
-  //       setRedirectCountdown(prev => prev - 1)
-  //     }, 1000)
-  //   } else if (isDialogOpen && redirectCountdown === 0) {
-  //     router.push('/destination')
-  //   }
-  //   return () => clearTimeout(timer)
-  // }, [isDialogOpen, redirectCountdown, router])
-
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

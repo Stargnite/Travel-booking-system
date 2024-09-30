@@ -1,5 +1,6 @@
 import { PEOPLE_URL } from "@/constants";
 import Image from "next/image";
+import Animation from "./animation";
 
 interface CampProps {
   backgroundImage: string;
@@ -70,30 +71,33 @@ const Camp = () => {
       </div>
 
       <div className="flexEnd mt-10 px-6 lg:-mt-20 lg:mr-6">
-        <div className="bg-green-50 p-8 lg:max-w-[500px] xl:max-w-[734px] xl:rounded-5xl xl:px-16 xl:py-20 relative w-full overflow-hidden rounded-3xl">
-          <h2 className="regular-24 md:regular-32 2xl:regular-64 capitalize text-white">
-            <strong>Where</strong> Will Your Next Journey Take You?
-          </h2>
-          <p className="regular-14 xl:regular-16 mt-5 text-white">
+        <Animation duration={1} delay={0.5} direction={"y"}>
+          <div className="bg-green-50 p-8 lg:max-w-[500px] xl:max-w-[734px] xl:rounded-5xl xl:px-16 xl:py-20 relative w-full overflow-hidden rounded-3xl">
+            <h2 className="regular-24 md:regular-32 2xl:regular-64 capitalize text-white">
+              <strong>Where</strong> Will Your Next Journey Take You?
+            </h2>
 
-            Get ready for an exciting journey like no other! From 
-            the moment you start planning until your feet touch the 
-            ground in a new destination, every step will be filled 
-            with unforgettable experiences. Whether you&apos;re exploring 
-            vibrant cities, relaxing on pristine beaches, or uncovering hidden gems, 
-            we&apos;re here to ensure your adventure is seamless and stress-free.
-            With us, every trip is more than just a vacation—it&apos;s a story 
-            waiting to be written. So pack your bags, and let&apos;s make memories
-             that will last a lifetime!
-          </p>
-          <Image
-            src="/quote.svg"
-            alt="camp-2"
-            width={186}
-            height={219}
-            className="camp-quote"
-          />
-        </div>
+            <p className="regular-14 xl:regular-16 mt-5 text-white">
+
+              Get ready for an exciting journey like no other! From
+              the moment you start planning until your feet touch the
+              ground in a new destination, every step will be filled
+              with unforgettable experiences. Whether you&apos;re exploring
+              vibrant cities, relaxing on pristine beaches, or uncovering hidden gems,
+              we&apos;re here to ensure your adventure is seamless and stress-free.
+              With us, every trip is more than just a vacation—it&apos;s a story
+              waiting to be written. So pack your bags, and let&apos;s make memories
+              that will last a lifetime!
+            </p>
+            <Image
+              src="/quote.svg"
+              alt="camp-2"
+              width={186}
+              height={219}
+              className="camp-quote"
+            />
+          </div>
+        </Animation>
       </div>
     </section>
   )
